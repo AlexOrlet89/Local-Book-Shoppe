@@ -13,6 +13,12 @@ describe('books routes', () => {
     expect(results.body.length).toEqual(4);
   });
 
+  it('should return a book with the author information', async () => {
+    const results = await request(app).get('/books/1');
+    expect(results.body.title).toEqual('The Monster at the end of this book');
+    expect(results.body.author[0].name).toEqual('Eric Hill');
+  });
+
   afterAll(() => {
     pool.end();
   });
