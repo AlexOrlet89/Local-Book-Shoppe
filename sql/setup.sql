@@ -16,6 +16,14 @@ CREATE TABLE authors (
     dob INT NOT NULL
 );
 
+CREATE TABLE authors_books (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    author_id BIGINT,
+    book_id BIGINT,
+    FOREIGN KEY (author_id) REFERENCES authors(id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
+);
+
 INSERT INTO books (
     title, released
 )
@@ -36,3 +44,14 @@ INSERT INTO authors (
 VALUES 
 ('Eric Hill', 'Holloway, London', 1927),
 ('Jon Stone', 'New Haven, Connecticut', 1932);
+
+INSERT INTO authors_books (
+    author_id,
+    book_id
+)
+
+VALUES 
+(1,1),
+(1,2),
+(2,3),
+(2,4);
